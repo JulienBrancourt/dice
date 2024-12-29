@@ -51,7 +51,7 @@ function setupUI() {
         <label>Bonus :</label>
         <input type="number" id="bonus" value="0" min="0" max="5">
       </div>
-      <button id="rollButton">Roll Dice</button>
+      <button id="rollButton">Lancer les dés</button>
     </div>
     
     <div class="options">
