@@ -8,6 +8,45 @@
     <script type="module" src="app.js" defer></script>
 </head>
 <body>
-     <div id="app"></div>
+     <div id="app">
+        <div class="controls">
+            <div>
+                <label>Dés :</label>
+                <input type="number" id="diceCount" value="5" min="1" max="100">
+            </div>
+            <div>
+                <label>Objectif :</label>
+                <input type="number" id="targetValue" value="4" min="1" max="6">
+            </div>
+            <div>
+                <label>Bonus :</label>
+                <input type="number" id="bonus" value="0" min="0" max="5">
+            </div>
+        </div>
+            
+        <div class="options">
+            <label>
+                <input type="checkbox" id="rerollOnes">
+                Relance des 1
+            </label>
+            <label>
+                <input type="checkbox" id="rerollBelow">
+                Relance des échecs
+            </label>
+        </div>
+        <div>
+            <button id="rollButton">Lancer les dés</button>
+
+        </div>
+            
+            <div class="dice-container">
+            <div id="below" class="dice-column">
+                <h2>Raté</h2>
+            </div>
+            <div id="above" class="dice-column">
+                <h2>Réussi</h2>
+            </div>
+        </div>
+     </div>
 </body>
 </html>

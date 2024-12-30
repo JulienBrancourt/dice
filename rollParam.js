@@ -1,4 +1,4 @@
-export class DiceRoller {
+export class RollParam {
 	constructor() {
 		this.rolls = [];
 		this.targetValue = 4;

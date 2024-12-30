@@ -1,6 +1,6 @@
-import { DiceRoller } from "./diceRoller.js";
+import { RollParam } from "./rollParam.js";
 
-const diceRoller = new DiceRoller();
+const rollParam = new RollParam();
 
 function createDiceDisplay(roll) {
 	const div = document.createElement("div");
@@ -24,7 +24,7 @@ function createDiceDisplay(roll) {
 }
 
 function updateResults() {
-	const { below, above } = diceRoller.getResults();
+	const { below, above } = rollParam.getResults();
 
 	const belowContainer = document.getElementById("below");
 	const aboveContainer = document.getElementById("above");
@@ -36,54 +36,18 @@ function updateResults() {
 	above.forEach((roll) => aboveContainer.appendChild(createDiceDisplay(roll)));
 }
 
-function setupUI() {
-	document.querySelector("#app").innerHTML = `
-    <div class="controls">
-      <div>
-        <label>Nombre de dés :</label>
-        <input type="number" id="diceCount" value="5" min="1" max="100">
-      </div>
-      <div>
-        <label>Résultat cible :</label>
-        <input type="number" id="targetValue" value="4" min="1" max="6">
-      </div>
-      <div>
-        <label>Bonus :</label>
-        <input type="number" id="bonus" value="0" min="0" max="5">
-      </div>
-      <button id="rollButton">Lancer les dés</button>
-    </div>
-    
-    <div class="options">
-      <label>
-        <input type="checkbox" id="rerollOnes">
-        Relance des 1
-      </label>
-      <label>
-        <input type="checkbox" id="rerollBelow">
-        Relance des échecs
-      </label>
-    </div>
-    
-    <div class="dice-container">
-      <div id="below" class="dice-column"></div>
-      <div id="above" class="dice-column"></div>
-    </div>
-  `;
 
-	// Event listeners
-	document.getElementById("rollButton").addEventListener("click", () => {
-		const count = parseInt(document.getElementById("diceCount").value);
-		diceRoller.targetValue = parseInt(
-			document.getElementById("targetValue").value
-		);
-		diceRoller.bonus = parseInt(document.getElementById("bonus").value);
-		diceRoller.rerollOnes = document.getElementById("rerollOnes").checked;
-		diceRoller.rerollBelow = document.getElementById("rerollBelow").checked;
+// Event listeners
+document.getElementById("rollButton").addEventListener("click", () => {
+	const count = parseInt(document.getElementById("diceCount").value);
+	rollParam.targetValue = parseInt(
+		document.getElementById("targetValue").value
+	);
+	rollParam.bonus = parseInt(document.getElementById("bonus").value);
+	rollParam.rerollOnes = document.getElementById("rerollOnes").checked;
+	rollParam.rerollBelow = document.getElementById("rerollBelow").checked;
 
-		diceRoller.roll(count);
-		updateResults();
-	});
-}
+	rollParam.roll(count);
+	updateResults();
+});
 
-setupUI();
